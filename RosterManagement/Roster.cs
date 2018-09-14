@@ -20,6 +20,8 @@ namespace RosterManagement
         /// <param name="wave">Refers to the Wave number</param>
         public void Add(string cadet, int wave)
         {
+            // Check if our roster contains an entry for this wave
+            // create one if it doesn't exist and add 
             if(!_roster.ContainsKey(wave)){
                 _roster.Add(wave,new List<string>());
             }
@@ -34,6 +36,8 @@ namespace RosterManagement
         public List<string> Grade(int wave)
         {
             List<string> list = new List<string>();
+            // if we don't contain an reference to the passed wave 
+            // then we return an empty list
             if(_roster.ContainsKey(wave)){
                 list = _roster[wave];
             }
@@ -47,9 +51,12 @@ namespace RosterManagement
         /// <returns>List of Cadet's Name</returns>
         public List<string> Roster()
         {
+            // getting all keys from dictionary and storing them inside 
+            // a list. Sort them and then access their contents 
             List<int> waveList = _roster.Keys.ToList();
             waveList.Sort();
             List<string> cadetRoster = new List<string>();
+            // add all cadets in a common list alphabetically ordered and then return it
             foreach(int wave in waveList){
                 List<string> cadetListInWave = _roster[wave];
                 cadetListInWave.Sort();
